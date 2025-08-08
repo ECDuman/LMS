@@ -1,0 +1,385 @@
+{
+	"info": {
+		"_postman_id": "e51c4b8c-c4b3-4efe-bbc5-ae22df057fe1",
+		"name": "LMS API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "15615746"
+	},
+	"item": [
+		{
+			"name": "Auth - Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"password\"\n}"
+				},
+				"url": "{{baseURL}}/api/v1/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Brands - Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Example Brand 321\"\n}"
+				},
+				"url": "{{baseURL}}/api/v1/brands"
+			},
+			"response": []
+		},
+		{
+			"name": "Brands - Get All",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": "{{baseURL}}/api/v1/brands"
+			},
+			"response": []
+		},
+		{
+			"name": "Brands - Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Example Branddddddd\"\n}"
+				},
+				"url": "{{baseURL}}/api/v1/brands/{{brand_id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Brands - Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": "{{baseURL}}/api/v1/brands/{{brand_id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Organizations - Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Example Organization\",\n  \"brandId\": \"{{brand_id}}\"\n}"
+				},
+				"url": "{{baseURL}}/api/v1/organizations"
+			},
+			"response": []
+		},
+		{
+			"name": "Organizations - Get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{baseURL}}/api/v1/organizations"
+			},
+			"response": []
+		},
+		{
+			"name": "Users - Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"teacher@example.com\",\n  \"password\": \"password123\",\n  \"firstName\": \"Teacher\",\n  \"lastName\": \"Example\",\n  \"profileId\": 1,\n  \"organizationId\": \"{{organization_id}}\"\n}"
+				},
+				"url": "{{baseURL}}/api/v1/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Users - Get All",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": "{{baseURL}}/api/v1/users"
+			},
+			"response": []
+		},
+		{
+			"name": "Classrooms - Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Example Brand 123\"\n}"
+				},
+				"url": "{{baseURL}}/api/v1/classrooms"
+			},
+			"response": []
+		},
+		{
+			"name": "Courses - Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"string\",\r\n  \"imageUrl\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/api/v1/courses"
+			},
+			"response": []
+		},
+		{
+			"name": "CourseAssign - Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"courseId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"classroomId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/api/v1/course-assignments"
+			},
+			"response": []
+		},
+		{
+			"name": "TeacherAssignClassroom - Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"teacherId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"classroomId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/api/v1/teacher-classroom-assignments"
+			},
+			"response": []
+		},
+		{
+			"name": "Teacher - Myclasses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{baseURL}}/api/v1/teachers/my-classes"
+			},
+			"response": []
+		},
+		{
+			"name": "Teacher - Mystudents",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{baseURL}}/api/v1/teachers/my-students"
+			},
+			"response": []
+		},
+		{
+			"name": "Teacher - Mycourses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{baseURL}}/api/v1/teachers/my-courses"
+			},
+			"response": []
+		},
+		{
+			"name": "Student - Mycourses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{baseURL}}/api/v1/students/my-courses"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "{{base_url}}",
+			"type": "default"
+		}
+	]
+}
