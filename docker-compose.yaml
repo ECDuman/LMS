@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: lms_postgres
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: lms_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck: # Add this healthcheck for PostgreSQL
+      test: ["CMD-SHELL", "pg_isready -U postgres -d lms_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s # Give PostgreSQL time to initialize before checking
+
+  redis:
+    image: redis:7
+    container_name: lms_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    healthcheck: # Add this healthcheck for Redis
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s # Give Redis time to initialize before checking
+
+  app:
+    build: .
+    container_name: lms_backend_app
+    ports:
+      - "8080:8080"
+    depends_on: # Update depends_on to use service_healthy
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/lms_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      JWT_SECRET: my-super-secret-key-that-is-really-hard-to-guess-123!@#
+    command: ["java", "-jar", "app.jar"]
+
+volumes:
+  postgres_data:

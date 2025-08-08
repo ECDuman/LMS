@@ -1,0 +1,20 @@
+package com.demo.lms.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import java.util.UUID;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class StudentClassroomAssignmentResponse {
+    private UUID id;
+    private UUID studentId;
+    private String studentFirstName;
+    private String studentLastName;
+    private UUID classroomId;
+    private String classroomName;
+}
