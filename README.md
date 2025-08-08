@@ -130,6 +130,20 @@ postman.collection added. dont forget enviroments.
 
 If not auto-created by Hibernate, ensure the following reference tables are manually populated:
 
+### `brands`
+
+| id                                   | name          |
+| ------------------------------------ | ------------- |
+| f3d0c2f0-3a6d-4f90-aefb-123456789abc | Default Brand |
+
+```sql
+INSERT INTO brands (id, name)
+VALUES (
+  'f3d0c2f0-3a6d-4f90-aefb-123456789abc',
+  'Default Brand'
+);
+```
+
 ### `profile_types`
 
 | id | name         |
@@ -148,6 +162,19 @@ At minimum, define permissions for each resource:
 
 These are used by the `PermissionCheckerService`.
 
+### `organizations`
+
+At least one organization is needed to create the initial user.
+
+```sql
+INSERT INTO organizations (id, name, brand_id)
+VALUES (
+  'e58ed763-928c-4155-bee9-fdbaaadc15f3',
+  'Default Org',
+  'f3d0c2f0-3a6d-4f90-aefb-123456789abc'
+);
+```
+
 ### `users`
 
 Manually insert an initial admin:
@@ -163,6 +190,4 @@ VALUES (
   0,
   'e58ed763-928c-4155-bee9-fdbaaadc15f3'
 );
-
-
-
+```
