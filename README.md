@@ -123,43 +123,34 @@ Services:
 postman.collection added. dont forget enviroments.
 
 ---
+
 ## 🗃️ Manually Required Database Tables
 
 If not auto-created by Hibernate, ensure the following reference tables are manually populated:
 
-profile_types
+### `profile_types`
 
-id
+| id | name         |
+| -- | ------------ |
+| 0  | SUPER\_ADMIN |
+| 1  | TEACHER      |
+| 2  | STUDENT      |
 
-name
-
-0
-
-SUPER_ADMIN
-
-1
-
-TEACHER
-
-2
-
-STUDENT
-
-permissions
+### `permissions`
 
 At minimum, define permissions for each resource:
 
-resource_name: e.g. User, Course, Assignment, etc.
+* resource\_name: e.g. `User`, `Course`, `Assignment`, etc.
+* role\_id: foreign key to `profile_types`
+* can\_create, can\_read, can\_update, can\_delete: boolean flags
 
-role_id: foreign key to profile_types
+These are used by the `PermissionCheckerService`.
 
-can_create, can_read, can_update, can_delete: boolean flags
-
-These are used by the PermissionCheckerService.
-
-users
+### `users`
 
 Manually insert an initial admin:
+
+```sql
 INSERT INTO users (id, email, password, first_name, last_name, profile_id, organization_id)
 VALUES (
   '11111111-1111-1111-1111-111111111111',
@@ -170,3 +161,6 @@ VALUES (
   0,
   'e58ed763-928c-4155-bee9-fdbaaadc15f3'
 );
+
+
+
