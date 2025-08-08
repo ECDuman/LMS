@@ -104,7 +104,8 @@ All DTOs use `jakarta.validation` annotations like `@NotBlank`, `@Email`, etc. t
 
 ## 🧱 Docker Compose
 
-!!! Maven clean install without tests Than dont forget to open Docker Desktop
+!!! Maven clean install (DONT FORGET TO SKIP TESTS),
+!!! Open Docker Desktop
 This project is fully containerized. To run the app:
 
 ```bash
